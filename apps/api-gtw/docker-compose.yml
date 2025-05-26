@@ -1,0 +1,19 @@
+version: "3.5"
+
+services:
+  api-gtw:
+    build:
+      context: .
+      dockerfile: ./apps/api-gtw/Dockerfile
+    container_name: api-gtw
+    env_file:
+      - .env
+    ports:
+      - "${PORT}:${PORT}"
+    restart: unless-stopped
+    networks:
+      - api_gtw_network
+
+networks:
+  api_gtw_network:
+    driver: bridge
