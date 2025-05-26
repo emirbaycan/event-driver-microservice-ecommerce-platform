@@ -152,3 +152,17 @@ services:
     restart: on-failure
     networks:
       - event_driven_commerce
+
+  web-ui:
+    build:
+      context: ./apps/web-ui
+      dockerfile: Dockerfile
+    hostname: web-ui
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - api-gtw
+    networks:
+      - event_driven_commerce
